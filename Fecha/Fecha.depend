@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1599257512 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Fecha/Fecha.c
+	"Fecha.h"
+
+1599255012 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Fecha/Fecha.h
+
+1599255552 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Fecha/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Fecha.h"
+
