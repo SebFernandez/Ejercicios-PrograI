@@ -8,3 +8,5 @@ Conceptos a trabajar en los ejercicios:
 - [ ] Pila
 - [ ] Cola
 - [ ] Árbol binario
+
+El archivo Cheatsheet va a contener conceptos bien en concretos para salir rápido del paso cuando haya que refrescar las cosas.
