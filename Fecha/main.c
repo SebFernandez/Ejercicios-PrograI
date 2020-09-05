@@ -2,30 +2,38 @@
 #include <stdlib.h>
 #include "Fecha.h"
 
+//TO-DO: incluir punteros.
 int main()  {
+    //Variables y vector.
     static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
     Fecha fecha, fecha2;
 
-    do  {
-        printf("Se determinará si la fecha ingresada es un año bisiesto.\nIngresar fecha (DD/MM/YYYY): ");
-        fflush(stdin);
-        scanf("%d/%d/%d", &fecha.dia, &fecha.mes, &fecha.anio);
+    //Punteros.
+    int *pDiasMes;
+    Fecha *pFecha, *pFecha2;
 
-    } while (esFechaValida(fecha));
+    //Inicializo punteros.
+    pDiasMes = &vectorDiasMes[0];
+    pFecha = &fecha;
+    pFecha2 = &fecha2;
 
-    printf("\n\t- Fecha ingresada %d/%d/%d.\n\n", fecha.dia, fecha.mes, fecha.anio);
-    if (esBisiesto(fecha.mes, fecha.anio) == 29){
-        printf("\t- El año %d es bisiesto!\n\n", fecha.anio);
+    printf("Se determinará si la fecha ingresada es un año bisiesto.\nIngresar fecha (DD/MM/YYYY): ");
+    cargarFecha(pFecha, pDiasMes);
+
+    printf("\n\t- Fecha ingresada %d/%d/%d.\n\n", pFecha->dia, pFecha->mes, pFecha->anio);
+
+    if (esBisiesto(pFecha)){
+        printf("\t- El año %d es bisiesto!\n\n", pFecha->anio);
+    }   else    {
+        printf("\t- El año %d no es bisiesto. :(\n\n", pFecha->anio);
     }
-    diaSiguiente(fecha);
 
-     do  {
-        printf("Ingrese una 2da fecha para determinar la cantidad de días restantes (DD/MM/YYYY): ");
-        fflush(stdin);
-        scanf("%d/%d/%d", &fecha2.dia, &fecha2.mes, &fecha2.anio);
-     } while (esFechaValida(fecha2));
+    diaSiguiente(pFecha, pDiasMes);
 
-    cantDiasRestantes (fecha, fecha2);
+    printf("Se deberá ingresar una segunda fecha para determinar los días que hay entre las dos fechas.\nIngresar fecha (DD/MM/YYYY): ");
+    cargarFecha(pFecha2, pDiasMes);
+
+    cantDiasRestantes (pFecha, pFecha2, pDiasMes);
 
     puts ("Chau chau \n");
 

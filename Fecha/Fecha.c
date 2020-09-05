@@ -1,9 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "Fecha.h"
 
-int esFechaValida (Fecha fecha)  {
-    if (fecha.anio > 1600)  {
-        if (fecha.mes >= 1 && fecha.mes <= 12)  {
-            if (fecha.dia > 0 && fecha.dia <= esBisiesto (fecha.mes, fecha.anio)) {
+int cargarFecha (Fecha *pFecha, int *pDiasMes ) {
+    do  {
+        fflush(stdin);
+        scanf("%d/%d/%d", &pFecha->dia, &pFecha->mes, &pFecha->anio);
+
+    } while (esFechaValida(pFecha, pDiasMes));
+}
+
+int esFechaValida (Fecha *pFecha, int *pDiasMes)  {
+    if (pFecha->anio > 1600)  {
+        if (pFecha->mes >= 1 && pFecha->mes <= 12)  {
+            if (pFecha->dia > 0 && pFecha->dia <= cantDiasDelMes(pFecha, pDiasMes)) {
                 return 0;
             }
         }
@@ -12,66 +22,77 @@ int esFechaValida (Fecha fecha)  {
     return 1;
 }
 
-int esBisiesto (int mes, int anio)    {
-    static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
+int esBisiesto (Fecha *pFecha)    {
 
-    if (anio % 4 == 0 && anio % 100 != 0 || anio % 400 == 0)    {
-        return vectorDiasMes [mes-1] + 1;
+    if (pFecha->anio % 4 == 0 && pFecha->anio % 100 != 0 || pFecha->anio % 400 == 0)    {
+        return 1;
     }
 
-    return vectorDiasMes [mes-1];
+    return 0;
 }
 
-void diaSiguiente (Fecha fecha)   {
-    int dia = fecha.dia, mes = fecha.mes, anio = fecha.anio;
+int cantDiasDelMes (Fecha *pFecha, int *pDiasMes)  {
+    if (pFecha->mes == 2 && pFecha->anio % 4 == 0 && pFecha->anio % 100 != 0 || pFecha->anio % 400 == 0)    {
+        return (*pDiasMes-1) + 1;
+    }
 
-    if ((fecha.dia + 1) >= esBisiesto(fecha.mes, fecha.anio))    {
-        if ((fecha.mes + 1) > 12)   {
+    return (*pDiasMes-1);
+}
+
+void diaSiguiente (Fecha *pFecha, int *pDiasMes)   {
+    int dia = pFecha->dia, mes = pFecha->mes, anio = pFecha->anio;
+
+    if ((pFecha->dia + 1) >= cantDiasDelMes(pFecha, pDiasMes))    {
+        if ((pFecha->mes + 1) > 12)   {
             dia = 1;
             mes = 1;
-            anio = fecha.anio + 1;
+            anio = pFecha->anio + 1;
         }   else    {
             dia = 1;
-            mes = fecha.mes + 1;
+            mes = pFecha->mes + 1;
         }
     }   else    {
-        dia = fecha.dia + 1;
+        dia = pFecha->dia + 1;
     }
 
     printf("\t- Fecha siguiente %d/%d/%d.\n\n", dia, mes, anio);
 }
 
 //TO DO: Resolver días restantes en el año.
-void cantDiasRestantes(Fecha fecha, Fecha fecha2)   {
-    int mes1 = fecha.mes, anio1 = fecha.anio;
+void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+    //Hard codeada para que cantDiasDelMes funcione.
+    Fecha *pFechaAux;
+
+    pFechaAux = &pFecha;
+
     int diasRestantes = 0;
 
-    if (fecha.mes == fecha2.mes && fecha.anio == fecha2.anio)   {
-        diasRestantes = fecha2.dia - fecha.dia;
+    if (pFecha->mes == pFecha2->mes && pFecha->anio == pFecha2->anio)   {
+        diasRestantes = pFecha2->dia - pFecha->dia;
     }   else    {
+        diasRestantes += cantDiasDelMes(pFecha, pDiasMes) - pFecha->dia;
 
-        diasRestantes += esBisiesto(fecha.mes, fecha.anio) - fecha.dia;
-
-        if (mes1 + 1 > 12)  {
-            mes1=1;
-            anio1 +=1;
+        if (pFechaAux->mes + 1 > 12)  {
+            pFechaAux->mes=1;
+            pFechaAux->anio +=1;
         }   else    {
-            mes1+=1;
+            pFechaAux->mes+=1;
         }
 
-        while (mes1 != fecha2.mes || anio1 != fecha2.anio)    {
-            diasRestantes+= esBisiesto(mes1, anio1);
+        //Hay un problema en el While.
+        while (pFechaAux->mes != pFecha2->mes || pFechaAux->anio != pFecha2->anio)    {
+            diasRestantes+= cantDiasDelMes(pFechaAux, pDiasMes);
 
-            if (mes1 + 1 > 12)  {
-                mes1=1;
-                anio1 +=1;
+            if (pFechaAux->mes + 1 > 12)  {
+                pFechaAux->mes=1;
+                pFechaAux->anio +=1;
             }   else    {
-                mes1+=1;
+                pFechaAux->mes +=1;
             }
         }
 
-        if (fecha2.dia != 1)    {
-            diasRestantes += fecha2.dia;
+        if (pFecha2->dia != 1)    {
+            diasRestantes += pFecha2->dia;
         }
     }
 

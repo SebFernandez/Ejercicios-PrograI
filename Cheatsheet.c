@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void funcionEjemplo (int *punteroFuncion);
+
 int main () {
-    int vector [10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    static int vector [10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     int *puntero;
 
@@ -19,8 +21,26 @@ int main () {
     printf ("Contenido del puntero: %d.\n", (*puntero));
 
     //Printea contenido de la dirección de memoria incrementada.
-    printf ("Contenido del puntero: %d.", (*puntero+1));
+    printf ("Contenido del puntero: %d.\n\n", (*puntero+1));
 
-    puts ("\n\n");
+    //Pasar punteros como parámetro.
+    funcionEjemplo(puntero);
+    printf ("Y también el contenido del vector: %d\n", vector [0]);
+
+    puts ("\n-----------------------------------------------------\n");
     return 0;
+}
+
+void funcionEjemplo (int *punteroFuncion)   {
+    int i;
+
+    for (i = 0; i < 10; i++)    {
+        printf("Índice %d printeando el contenido del vector: %d.\n", i, *punteroFuncion+i);
+    }
+
+    printf ("\nIngresá algo: ");
+    scanf ("%d", &(*punteroFuncion));
+    printf ("Modificaste el contenido del puntero: %d.\n", (*punteroFuncion));
+
+    return;
 }

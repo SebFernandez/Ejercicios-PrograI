@@ -7,9 +7,10 @@ typedef struct  {
     int anio;
 } Fecha;
 
-int esFechaValida (Fecha fecha);
-int esBisiesto (int mes, int anio) ;
-void diaSiguiente(Fecha fecha);
-void cantDiasRestantes(Fecha fecha, Fecha fecha2);
+int esFechaValida (Fecha *pFecha, int *pDiasMes);
+int esBisiesto (Fecha *pFecha);
+void diaSiguiente (Fecha *pFecha, int *pDiasMes);
+int cantDiasDelMes (Fecha *pFecha, int *pDiasMes);
+void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes);
 
 #endif // FECHA_H_INCLUDED
