@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include "Fecha.h"
 
-//TO-DO: incluir punteros.
+//TO DO: Funciones sumar y restar días.
 int main()  {
     //Variables y vector.
-    static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
+    static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     Fecha fecha, fecha2;
+    int var = 0;
 
     //Punteros.
     int *pDiasMes;
@@ -30,9 +31,14 @@ int main()  {
 
     diaSiguiente(pFecha, pDiasMes);
 
-    printf("Se deberá ingresar una segunda fecha para determinar los días que hay entre las dos fechas.\nIngresar fecha (DD/MM/YYYY): ");
+    //Fecha2 se utiliza como auxiliar.
+    sumarDias (pFecha, pFecha2, pDiasMes);
+    restarDias (pFecha, pFecha2,pDiasMes);
+
+    printf("Se deberá ingresar una segunda fecha,\nAsí se calculan los días que hay entre las dos fechas.\nIngresar fecha (DD/MM/YYYY): ");
     cargarFecha(pFecha2, pDiasMes);
 
+    //Va ultima esta función.
     cantDiasRestantes (pFecha, pFecha2, pDiasMes);
 
     puts ("Chau chau \n");

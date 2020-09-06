@@ -33,10 +33,10 @@ int esBisiesto (Fecha *pFecha)    {
 
 int cantDiasDelMes (Fecha *pFecha, int *pDiasMes)  {
     if (pFecha->mes == 2 && pFecha->anio % 4 == 0 && pFecha->anio % 100 != 0 || pFecha->anio % 400 == 0)    {
-        return (*pDiasMes-1) + 1;
+        return (*(pDiasMes+(pFecha->mes-1))) + 1;
     }
 
-    return (*pDiasMes-1);
+    return (*(pDiasMes+(pFecha->mes-1)));
 }
 
 void diaSiguiente (Fecha *pFecha, int *pDiasMes)   {
@@ -58,13 +58,34 @@ void diaSiguiente (Fecha *pFecha, int *pDiasMes)   {
     printf("\t- Fecha siguiente %d/%d/%d.\n\n", dia, mes, anio);
 }
 
-//TO DO: Resolver días restantes en el año.
+void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+    int diasAgregados = 0;
+    pFecha2->dia = pFecha->dia;
+    pFecha2->mes = pFecha->mes;
+    pFecha2->anio = pFecha->anio;
+
+    printf ("Días que desea sumarle a la fecha: ");
+    scanf("%d", &diasAgregados);
+
+
+}
+
+void restarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+    puts ("Nada\n");
+}
+
+void incrementarPunteroFecha (Fecha *pFecha)    {
+    if ((pFecha->mes + 1) > 12)   {
+        pFecha->dia = 1;
+        pFecha->mes = 1;
+        pFecha->anio += 1;
+    }   else    {
+        pFecha->dia = 1;
+        pFecha->mes += 1;
+    }
+}
+
 void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
-    //Hard codeada para que cantDiasDelMes funcione.
-    Fecha *pFechaAux;
-
-    pFechaAux = &pFecha;
-
     int diasRestantes = 0;
 
     if (pFecha->mes == pFecha2->mes && pFecha->anio == pFecha2->anio)   {
@@ -72,29 +93,16 @@ void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     }   else    {
         diasRestantes += cantDiasDelMes(pFecha, pDiasMes) - pFecha->dia;
 
-        if (pFechaAux->mes + 1 > 12)  {
-            pFechaAux->mes=1;
-            pFechaAux->anio +=1;
-        }   else    {
-            pFechaAux->mes+=1;
+        incrementarPunteroFecha(pFecha);
+
+        while (pFecha->mes != pFecha2->mes || pFecha->anio != pFecha2->anio)  {
+            diasRestantes += cantDiasDelMes (pFecha, pDiasMes);
+
+            incrementarPunteroFecha(pFecha);
         }
 
-        //Hay un problema en el While.
-        while (pFechaAux->mes != pFecha2->mes || pFechaAux->anio != pFecha2->anio)    {
-            diasRestantes+= cantDiasDelMes(pFechaAux, pDiasMes);
-
-            if (pFechaAux->mes + 1 > 12)  {
-                pFechaAux->mes=1;
-                pFechaAux->anio +=1;
-            }   else    {
-                pFechaAux->mes +=1;
-            }
-        }
-
-        if (pFecha2->dia != 1)    {
-            diasRestantes += pFecha2->dia;
-        }
+        diasRestantes += pFecha2->dia;
     }
 
-    printf("Faltan %d día(s)\n\n", diasRestantes);
+    printf("Faltan %d día(s).\n\n", diasRestantes);
 }
