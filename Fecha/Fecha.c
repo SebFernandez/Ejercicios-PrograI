@@ -67,11 +67,57 @@ void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     printf ("Días que desea sumarle a la fecha: ");
     scanf("%d", &diasAgregados);
 
+    while (diasAgregados > 0)   {
+        if (pFecha2->dia + diasAgregados > cantDiasDelMes(pFecha2, pDiasMes)) {
+            diasAgregados -= (cantDiasDelMes(pFecha2, pDiasMes) - pFecha2->dia);
+            incrementarPunteroFecha(pFecha2);
 
+            /* Se decrementa diasAgregados porque la función incrementarPunteroFecha pone a Pfecha->dia en 1,
+               técnicamente ya está incrementando por uno la función misma,
+               si no se decrementa dias agregados voy a tener un día de sobra. */
+            diasAgregados--;
+
+        }   else    {
+            pFecha2->dia += diasAgregados;
+            diasAgregados = 0;
+        }
+    }
+
+    printf("Fecha actual más los días agregados resultan ser la fecha: %d/%d/%d.\n\n", pFecha2->dia, pFecha2->mes, pFecha2->anio);
 }
 
 void restarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
-    puts ("Nada\n");
+    int diasRestados = 0;
+    pFecha2->dia = pFecha->dia;
+    pFecha2->mes = pFecha->mes;
+    pFecha2->anio = pFecha->anio;
+
+    printf ("Días que desea restarle a la fecha: ");
+    scanf("%d", &diasRestados);
+
+    while (diasRestados > 0)    {
+        if (pFecha2->dia - diasRestados <= 0)    {
+            diasRestados -= pFecha2->dia;
+            decrementarPunteroFecha(pFecha2, pDiasMes);
+        }   else    {
+            pFecha2->dia -= diasRestados;
+            diasRestados = 0;
+        }
+    }
+
+    printf("Fecha actual menos los días restados resultan ser la fecha: %d/%d/%d.\n\n", pFecha2->dia, pFecha2->mes, pFecha2->anio);
+}
+
+void decrementarPunteroFecha (Fecha *pFecha, int *pDiasMes)    {
+    if ((pFecha->mes - 1) < 0)  {
+        pFecha->dia = 31;
+        pFecha->mes = 12;
+        pFecha->anio -= 1;
+    }   else    {
+        pFecha->mes -= 1;
+        pFecha->dia = cantDiasDelMes(pFecha, pDiasMes);
+    }
+
 }
 
 void incrementarPunteroFecha (Fecha *pFecha)    {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Fecha.h"
 
-//TO DO: Funciones sumar y restar días.
+//TO DO: A partir de una fecha indicar que día de la semana es.
 int main()  {
     //Variables y vector.
     static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -29,6 +29,7 @@ int main()  {
         printf("\t- El año %d no es bisiesto. :(\n\n", pFecha->anio);
     }
 
+    //diaDeSemana(pFecha);
     diaSiguiente(pFecha, pDiasMes);
 
     //Fecha2 se utiliza como auxiliar.
