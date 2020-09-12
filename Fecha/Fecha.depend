@@ -9,15 +9,15 @@
 	<stdlib.h>
 	"Fecha.h"
 
-1599920964 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/Fecha.c
+1599922155 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/Fecha.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Fecha.h"
 
-1599920721 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/Fecha.h
+1599922247 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/Fecha.h
 
-1599920724 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/main.c
+1599922256 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Fecha/main.c
 	<stdio.h>
 	<stdlib.h>
 	"Fecha.h"

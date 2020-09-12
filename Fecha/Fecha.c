@@ -3,18 +3,18 @@
 #include <string.h>
 #include "Fecha.h"
 
-int cargarFecha (Fecha *pFecha, int *pDiasMes ) {
+int cargarFecha (Fecha *pFecha, int *vectorDiasMes ) {
     do  {
         fflush(stdin);
         scanf("%d/%d/%d", &pFecha->dia, &pFecha->mes, &pFecha->anio);
 
-    } while (esFechaValida(pFecha, pDiasMes));
+    } while (esFechaValida(pFecha, vectorDiasMes));
 }
 
-int esFechaValida (Fecha *pFecha, int *pDiasMes)  {
+int esFechaValida (Fecha *pFecha, int *vectorDiasMes)  {
     if (pFecha->anio > 1600)  {
         if (pFecha->mes >= 1 && pFecha->mes <= 12)  {
-            if (pFecha->dia > 0 && pFecha->dia <= cantDiasDelMes(pFecha, pDiasMes)) {
+            if (pFecha->dia > 0 && pFecha->dia <= cantDiasDelMes(pFecha, vectorDiasMes)) {
                 return 0;
             }
         }
@@ -32,18 +32,18 @@ int esBisiesto (Fecha *pFecha)    {
     return 0;
 }
 
-int cantDiasDelMes (Fecha *pFecha, int *pDiasMes)  {
+int cantDiasDelMes (Fecha *pFecha, int *VectorDiasMes)  {
     if (pFecha->mes == 2 && pFecha->anio % 4 == 0 && pFecha->anio % 100 != 0 || pFecha->anio % 400 == 0)    {
-        return (*(pDiasMes+(pFecha->mes-1))) + 1;
+        return (*(VectorDiasMes+(pFecha->mes-1))) + 1;
     }
 
-    return (*(pDiasMes+(pFecha->mes-1)));
+    return (*(VectorDiasMes+(pFecha->mes-1)));
 }
 
-void diaSiguiente (Fecha *pFecha, int *pDiasMes)   {
+void diaSiguiente (Fecha *pFecha, int *vectorDiasMes)   {
     int dia = pFecha->dia, mes = pFecha->mes, anio = pFecha->anio;
 
-    if ((pFecha->dia + 1) >= cantDiasDelMes(pFecha, pDiasMes))    {
+    if ((pFecha->dia + 1) >= cantDiasDelMes(pFecha, vectorDiasMes))    {
         if ((pFecha->mes + 1) > 12)   {
             dia = 1;
             mes = 1;
@@ -59,7 +59,7 @@ void diaSiguiente (Fecha *pFecha, int *pDiasMes)   {
     printf("\t- Fecha siguiente %d/%d/%d.\n\n", dia, mes, anio);
 }
 
-void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *vectorDiasMes)   {
     int diasAgregados = 0;
     pFecha2->dia = pFecha->dia;
     pFecha2->mes = pFecha->mes;
@@ -69,8 +69,8 @@ void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     scanf("%d", &diasAgregados);
 
     while (diasAgregados > 0)   {
-        if (pFecha2->dia + diasAgregados > cantDiasDelMes(pFecha2, pDiasMes)) {
-            diasAgregados -= (cantDiasDelMes(pFecha2, pDiasMes) - pFecha2->dia);
+        if (pFecha2->dia + diasAgregados > cantDiasDelMes(pFecha2, vectorDiasMes)) {
+            diasAgregados -= (cantDiasDelMes(pFecha2, vectorDiasMes) - pFecha2->dia);
             incrementarPunteroFecha(pFecha2);
 
             /* Se decrementa diasAgregados porque la función incrementarPunteroFecha pone a Pfecha->dia en 1,
@@ -87,7 +87,7 @@ void sumarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     printf("Fecha actual más los días agregados resultan ser la fecha: %d/%d/%d.\n\n", pFecha2->dia, pFecha2->mes, pFecha2->anio);
 }
 
-void restarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+void restarDias (Fecha *pFecha, Fecha *pFecha2, int *vectorDiasMes)   {
     int diasRestados = 0;
     pFecha2->dia = pFecha->dia;
     pFecha2->mes = pFecha->mes;
@@ -99,7 +99,7 @@ void restarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     while (diasRestados > 0)    {
         if (pFecha2->dia - diasRestados <= 0)    {
             diasRestados -= pFecha2->dia;
-            decrementarPunteroFecha(pFecha2, pDiasMes);
+            decrementarPunteroFecha(pFecha2, vectorDiasMes);
         }   else    {
             pFecha2->dia -= diasRestados;
             diasRestados = 0;
@@ -109,14 +109,14 @@ void restarDias (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     printf("Fecha actual menos los días restados resultan ser la fecha: %d/%d/%d.\n\n", pFecha2->dia, pFecha2->mes, pFecha2->anio);
 }
 
-void decrementarPunteroFecha (Fecha *pFecha, int *pDiasMes)    {
+void decrementarPunteroFecha (Fecha *pFecha, int *vectorDiasMes)    {
     if ((pFecha->mes - 1) < 0)  {
         pFecha->dia = 31;
         pFecha->mes = 12;
         pFecha->anio -= 1;
     }   else    {
         pFecha->mes -= 1;
-        pFecha->dia = cantDiasDelMes(pFecha, pDiasMes);
+        pFecha->dia = cantDiasDelMes(pFecha, vectorDiasMes);
     }
 
 }
@@ -132,18 +132,18 @@ void incrementarPunteroFecha (Fecha *pFecha)    {
     }
 }
 
-void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
+void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *vectorDiasMes)   {
     int diasRestantes = 0;
 
     if (pFecha->mes == pFecha2->mes && pFecha->anio == pFecha2->anio)   {
         diasRestantes = pFecha2->dia - pFecha->dia;
     }   else    {
-        diasRestantes += cantDiasDelMes(pFecha, pDiasMes) - pFecha->dia;
+        diasRestantes += cantDiasDelMes(pFecha, vectorDiasMes) - pFecha->dia;
 
         incrementarPunteroFecha(pFecha);
 
         while (pFecha->mes != pFecha2->mes || pFecha->anio != pFecha2->anio)  {
-            diasRestantes += cantDiasDelMes (pFecha, pDiasMes);
+            diasRestantes += cantDiasDelMes (pFecha, vectorDiasMes);
 
             incrementarPunteroFecha(pFecha);
         }
@@ -154,7 +154,7 @@ void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     printf("Faltan %d día(s).\n\n", diasRestantes);
 }
 
-void diaDeSemana (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes, char **dias) {
+void diaDeSemana (Fecha *pFecha, Fecha *pFecha2, char **dias) {
     //Magia china encontrada en internet -> https://bit.ly/33qrxl1.
     static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
     int indice = 0;
