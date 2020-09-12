@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "Fecha.h"
 
-//TO DO: A partir de una fecha indicar que día de la semana es.
 int main()  {
     //Variables y vector.
     static int vectorDiasMes [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    static char *dias [7] = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
     Fecha fecha, fecha2;
     int var = 0;
 
@@ -29,7 +29,7 @@ int main()  {
         printf("\t- El año %d no es bisiesto. :(\n\n", pFecha->anio);
     }
 
-    //diaDeSemana(pFecha);
+    diaDeSemana(pFecha, pFecha2, pDiasMes, dias);
     diaSiguiente(pFecha, pDiasMes);
 
     //Fecha2 se utiliza como auxiliar.

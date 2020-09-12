@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Fecha.h"
 
 int cargarFecha (Fecha *pFecha, int *pDiasMes ) {
@@ -151,4 +152,20 @@ void cantDiasRestantes(Fecha *pFecha, Fecha *pFecha2, int *pDiasMes)   {
     }
 
     printf("Faltan %d día(s).\n\n", diasRestantes);
+}
+
+void diaDeSemana (Fecha *pFecha, Fecha *pFecha2, int *pDiasMes, char **dias) {
+    //Magia china encontrada en internet -> https://bit.ly/33qrxl1.
+    static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+    int indice = 0;
+
+    pFecha2->dia = pFecha->dia;
+    pFecha2->mes = pFecha->mes;
+    pFecha2->anio = pFecha->anio;
+
+    pFecha2->anio -= pFecha2->mes < 3;
+
+    indice = (pFecha2->anio + (pFecha2->anio/4) - pFecha2->anio*3/400 - pFecha2->anio/4000 + t[pFecha2->mes-1] + pFecha2->dia) % 7;
+
+    printf ("\t- La fecha ingresada es el día %s.\n\n", dias[indice]);
 }
