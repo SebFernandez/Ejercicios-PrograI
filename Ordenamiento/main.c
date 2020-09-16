@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define TAM 10
+#define TAM 5
 #include "Ordenamiento.h"
 
-//TO-DO: Hacer selección e inserción.
+//TO-DO: Hacer inserción.
 int main() {
     //Vectores.
     int vectorNros [TAM], vectorBurbujeo [TAM], vectorSeleccion [TAM], vectorInsercion [TAM];
@@ -26,6 +26,14 @@ int main() {
     burbujeo(vectorBurbujeo, i, j);
     printf ("\nVector burbujeo ordenado:\t");
     mostrarVector(vectorBurbujeo, i);
+
+    seleccion (vectorSeleccion, i, j);
+    printf("\nVector selección ordenado:\t");
+    mostrarVector(vectorSeleccion, i);
+
+    insercion (vectorInsercion, i, j);
+    printf("\nVector inserción ordenado:\t");
+    mostrarVector(vectorInsercion, i);
 
     printf("\n\nGoodbye world!\n");
     return 0;

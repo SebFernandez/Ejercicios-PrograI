@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1600218525 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/main.c
+1600293074 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"Ordenamiento.h"
 
-1600217885 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/Ordenamiento.h
+1600291527 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/Ordenamiento.h
 
-1600218381 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/Ordenamiento.c
+1600293074 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Proyectos/Ejercicios-PrograI/Ordenamiento/Ordenamiento.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
