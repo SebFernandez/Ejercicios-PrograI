@@ -74,6 +74,12 @@ void insercion (int *vectorInsercion, int *i, int *j)   {
 
     for (*i = 0; *i < TAM-1; (*i)++)  {
         if (*(vectorInsercion + (*i)) > *(vectorInsercion + (*i) + 1))   {
+
+            /*
+            Si la condición del 1er if se cumple, se vuelve a hacer la iteración pero al revés,
+            de esta manera, voy insertando donde vaya mejor el elemento.
+            */
+
             for (*j = *i; *j > -1; (*j)--)   {
                 if (*(vectorInsercion + (*j)) > *(vectorInsercion + (*j) + 1))  {
                     tmp = *(vectorInsercion + (*j) + 1);

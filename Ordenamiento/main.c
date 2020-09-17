@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#define TAM 100
 #include "Ordenamiento.h"
+#define TAM 100
 
 //TO-DO: Hacer inserción.
 int main() {
