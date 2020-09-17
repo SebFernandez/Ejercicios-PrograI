@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define TAM 5
+#define TAM 100
 
 void cargarVector (int *vectorNros, int *vectorBurbujeo, int *vectorSeleccion, int *vectorInsercion, int *i) {
     int nroRandom;
@@ -72,12 +72,14 @@ void seleccion (int *vectorSeleccion, int *i, int *j)   {
 void insercion (int *vectorInsercion, int *i, int *j)   {
     int tmp = 0;
 
-    for (*i = 1; *i < TAM; (*i)++)  {
-        if (*vectorInsercion > *(vectorInsercion + (*i)))   {
-
-
-            for (*j = 0; *j < *i; (*j)++)   {
-
+    for (*i = 0; *i < TAM-1; (*i)++)  {
+        if (*(vectorInsercion + (*i)) > *(vectorInsercion + (*i) + 1))   {
+            for (*j = *i; *j > -1; (*j)--)   {
+                if (*(vectorInsercion + (*j)) > *(vectorInsercion + (*j) + 1))  {
+                    tmp = *(vectorInsercion + (*j) + 1);
+                    *(vectorInsercion + (*j) + 1) = *(vectorInsercion + (*j));
+                    *(vectorInsercion + (*j)) = tmp;
+                }
             }
         }
     }
