@@ -68,5 +68,3 @@ void incrementarContenidoPtero (int *i) {
 
     puts("\n");
 }
-
-//prueba

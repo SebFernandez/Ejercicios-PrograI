@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1600818580 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Cadena/Cadena.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
+1600817806 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Cadena/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Cadena.h"
+
+1600817791 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Cadena/Cadena.h
+
