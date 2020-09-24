@@ -41,7 +41,7 @@ void funcionEjemplo (int *punteroFuncion)   {
         printf ("Índice %d printeando el contenido del vector: %d.\n", i, (*(punteroFuncion+i)));
     }
 
-    printf ("\nIngresá algo: ");
+    printf ("\nIngresá un nro: ");
 
     //Importante!!
     scanf ("%d", &(*punteroFuncion));
@@ -56,7 +56,7 @@ void incrementarContenidoPtero (int *i) {
         printf("\nNúmero: ");
         fflush(stdin);
         scanf("%d", &(*i));
-        printf("\t%d\n", *i);
+        printf("Valor ingresado: %d\n", *i);
     }
 
     *i = 0;
