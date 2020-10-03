@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1601739369 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Archivos/Archivos.c
+	<stdio.h>
+	<stdlib.h>
+	<Fecha.h>
+	<Archivos.h>
+
+1601513409 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Include/Fecha.h
+
+1601513208 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Archivos/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<Fecha.h>
+	<Archivos.h>
+
+1601512115 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Include/Archivos.h
+
+1601513285 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Fecha/Fecha.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Fecha.h"
+

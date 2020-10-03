@@ -3,7 +3,7 @@
 #include <string.h>
 #include "Fecha.h"
 
-int cargarFecha (Fecha *pFecha, int *vectorDiasMes ) {
+void cargarFecha (Fecha *pFecha, int *vectorDiasMes ) {
     do  {
         fflush(stdin);
         scanf("%d/%d/%d", &pFecha->dia, &pFecha->mes, &pFecha->anio);

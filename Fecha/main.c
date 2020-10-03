@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Fecha.h"
+#include <Fecha.h>
 
 int main()  {
     //Variables y vector.

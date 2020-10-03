@@ -22,3 +22,16 @@
 	<stdlib.h>
 	"Fecha.h"
 
+1601513285 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Fecha/Fecha.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Fecha.h"
+
+1601513409 /media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Include/Fecha.h
+
+1601418281 source:/media/seba/Pepas/Universidad/Programacion I/C2-2020/Ejercicios-PrograI/Fecha/main.c
+	<stdio.h>
+	<stdlib.h>
+	<Fecha.h>
+
